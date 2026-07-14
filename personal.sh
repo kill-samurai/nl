@@ -22,6 +22,7 @@ brew install python@3.13 &&
 #brew install --cask firefox && 
 brew install --cask sublime-text && 
 brew install --cask spotify && 
+brew install --cask signal && 
 #brew install --cask studio-3t && 
 brew install htop && 
 #brew install --cask 1password &&
@@ -49,7 +50,7 @@ defaults write com.apple.dock largesize -int 64 &&
 defaults write com.apple.dock persistent-apps -array &&
 dockutil --remove Downloads &&
 #dockutil --add "/Applications/Google Chrome.app" &&
-dockutil --add "/Applications/Brave Browser.app" &&
+#dockutil --add "/Applications/Brave Browser.app" &&
 dockutil --add /Applications/Utilities/Terminal.app &&
 dockutil --add /Applications/Visual\ Studio\ Code.app &&
 #dockutil --add "/Applications/Slack.app" &&
