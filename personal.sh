@@ -18,7 +18,7 @@ brew install node &&
 brew install --cask visual-studio-code && 
 #brew install --cask dadroit-json-viewer && 
 brew install python@3.13 && 
-brew install --cask pycharm-ce && 
+#brew install --cask pycharm-ce && 
 #brew install --cask firefox && 
 brew install --cask sublime-text && 
 brew install --cask spotify && 
@@ -26,15 +26,15 @@ brew install --cask spotify &&
 brew install htop && 
 #brew install --cask 1password &&
 #brew install --cask slack &&
-brew install defaultbrowser &&
+#brew install defaultbrowser &&
 brew install --cask steam &&
 brew install dockutil &&
 brew install --cask virtualbuddy &&
 brew install --cask brave-browser &&
 brew install --cask whatsapp &&
-brew install --cask telegram &&
+#brew install --cask telegram &&
 #config below
-defaultbrowser brave &&
+#defaultbrowser brave &&
 #defaultbrowser chrome &&
 defaults write ~/Library/Preferences/.GlobalPreferences com.apple.swipescrolldirection -bool false &&
 sudo defaults write /Library/Preferences/com.apple.AppleMultitouchTrackpad Clicking -bool true && 
