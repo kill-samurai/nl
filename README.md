@@ -8,4 +8,4 @@ sudo -i curl -sL https://raw.githubusercontent.com/kill-samurai/nl/refs/heads/ma
 
 Install Weztern
 
-curl -fsSL https://raw.github.com/kill-samurai/nl/refs/heads/main/weztern.sh | sudo zsh
+curl -fsSL https://raw.github.com/kill-samurai/nl/refs/heads/main/weztern.sh | zsh
