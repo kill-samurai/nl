@@ -5,3 +5,8 @@ sudo -i curl -sL https://raw.githubusercontent.com/kill-samurai/nl/refs/heads/ma
 run for personal laptop:
 
 sudo -i curl -sL https://raw.githubusercontent.com/kill-samurai/nl/refs/heads/main/personal.sh | zsh
+
+Install Weztern
+
+
+sudo -i curl -sL https://raw.githubusercontent.com/kill-samurai/nl/refs/heads/main/personal.sh | zsh
