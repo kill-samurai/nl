@@ -1,0 +1,9 @@
+.DS_Store
+
+# Machine-local Fish configuration
+dotfiles/fish/.config/fish/conf.d/ssh.fish
+dotfiles/fish/.config/fish/conf.d/local.fish
+dotfiles/fish/.config/fish/config.fish.old
+
+# Wallpapers are stored in iCloud
+dotfiles/wezterm/.config/wezterm/backdrops/
