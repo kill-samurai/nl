@@ -172,6 +172,7 @@ main() {
   link_dotfiles
   check_icloud_wallpapers
   "$REPO_DIR/scripts/macos-defaults.sh"
+  "$REPO_DIR/scripts/configure-dock.sh"
 
   log "Personal Mac setup completed successfully"
 }
