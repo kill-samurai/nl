@@ -6,5 +6,11 @@ return {
 	config = function()
 	    require('nvim-highlight-colors').setup({})
 	end},
+    { -- codex access
+	"nwiizo/codex.nvim",
+	config = function()
+	    require("codex").setup({})
+	end
+    },
 
 }
