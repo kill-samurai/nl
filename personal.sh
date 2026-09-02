@@ -171,8 +171,11 @@ main() {
   backup_existing_dotfiles
   link_dotfiles
   check_icloud_wallpapers
+  "$REPO_DIR/scripts/macos-defaults.sh"
 
   log "Personal Mac setup completed successfully"
 }
+
+
 
 main "$@"
