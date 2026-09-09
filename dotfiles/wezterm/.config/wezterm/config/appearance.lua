@@ -70,9 +70,9 @@ return {
 
    visual_bell = {
       fade_in_function = 'EaseIn',
-      fade_in_duration_ms = 250,
+      fade_in_duration_ms = 0,
       fade_out_function = 'EaseOut',
-      fade_out_duration_ms = 250,
+      fade_out_duration_ms = 1000,
       target = 'CursorColor',
    },
 }
