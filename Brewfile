@@ -30,3 +30,7 @@ cask "google-chrome"
 cask "signal"
 cask "spotify"
 cask "whatsapp"
+
+# neovim plugin depenencies
+
+brew "poppler"

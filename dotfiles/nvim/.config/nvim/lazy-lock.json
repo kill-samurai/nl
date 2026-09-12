@@ -1,4 +1,5 @@
 {
+  "PDFview": { "branch": "main", "commit": "972dfcce5c0de578865649940f44bf57a700498d" },
   "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
   "codex.nvim": { "branch": "main", "commit": "3af612a93c21c69789febc12a5488570d2b9b3d6" },
   "friendly-snippets": { "branch": "main", "commit": "30bfd475adadfd4f286f86168831348dfd8aecdc" },
