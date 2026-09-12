@@ -19,7 +19,6 @@ cask "font-jetbrains-mono-nerd-font"
 
 # Development
 cask "codex"
-cask "vscodium"
 cask "sublime-text"
 
 # Browsers
