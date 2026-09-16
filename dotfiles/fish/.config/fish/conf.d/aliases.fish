@@ -13,3 +13,7 @@ function caribe --description 'Refresh Caribe data and restore the original Tail
     end
     python3 "$HOME/Documents/caribe/refresh_data.py" $argv
 end
+
+function drive
+    command cd "/Volumes/drive/"
+end
