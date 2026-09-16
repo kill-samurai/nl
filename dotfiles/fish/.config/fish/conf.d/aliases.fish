@@ -15,5 +15,5 @@ function caribe --description 'Refresh Caribe data and restore the original Tail
 end
 
 function drive
-    command cd "/Volumes/drive/"
+    cd "/Volumes/drive/"
 end
