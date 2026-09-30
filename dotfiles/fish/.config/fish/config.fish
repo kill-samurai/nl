@@ -56,3 +56,5 @@ function show_command_duration --on-event fish_postexec
         echo "󱎫 $minutes min"
     end
 end
+
+set -gx OPENCODE_EXPERIMENTAL_LSP_TOOL true
