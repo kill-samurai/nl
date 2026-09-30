@@ -6,6 +6,6 @@ function pip
     command pip3 $argv
 end
 
-function coode
+function code
     command opencode $argv
 end
