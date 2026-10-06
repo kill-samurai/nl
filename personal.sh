@@ -90,6 +90,25 @@ install_packages() {
   brew bundle --file="$REPO_DIR/Brewfile"
 }
 
+install_cli_apps() {
+  log "Installing OpenCode"
+  if ! command -v opencode >/dev/null 2>&1; then
+    curl -fsSL https://opencode.ai/install | bash
+  fi
+
+  log "Installing ani-cli"
+  local ani_cli_dir="$HOME/.local/share/ani-cli"
+  mkdir -p "$HOME/.local/bin" "$HOME/.local/share"
+
+  if [[ -d "$ani_cli_dir/.git" ]]; then
+    git -C "$ani_cli_dir" pull --ff-only
+  else
+    git clone https://github.com/pystardust/ani-cli.git "$ani_cli_dir"
+  fi
+
+  ln -sfn "$ani_cli_dir/ani-cli" "$HOME/.local/bin/ani-cli"
+}
+
 backup_unmanaged_directory() {
   local target_directory="$1"
   local managed_marker="$2"
@@ -168,6 +187,7 @@ main() {
   configure_zsh_path
   ensure_rosetta
   install_packages
+  install_cli_apps
   backup_existing_dotfiles
   link_dotfiles
   check_icloud_wallpapers

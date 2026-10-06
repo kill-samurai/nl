@@ -1,16 +1,19 @@
-# Personal Apple Silicon Mac Setup
+# Personal Cross-Platform Setup
 
-Automated setup for my personal Apple Silicon Macs.
+Automated setup for my personal Apple Silicon Macs and Windows PCs.
 
-The bootstrap installs applications with Homebrew, configures macOS, creates my standard Dock layout, and links my Fish, Neovim, and WezTerm configuration using GNU Stow.
+The Mac bootstrap installs applications with Homebrew and configures macOS. The Windows bootstrap installs WezTerm, Firefox, and mpv with WinGet, then sets up Fish, Neovim, OpenCode, and ani-cli in Ubuntu on WSL. Both use the shared Fish, Neovim, and WezTerm configuration.
 
 ## Supported systems
 
 - Apple Silicon Mac (`arm64`)
 - macOS
 - Personal machines using the same iCloud Drive account
+- Windows 10/11 with WinGet and Ubuntu on WSL 2
 
 Intel Macs are intentionally unsupported.
+
+Windows uses native WezTerm and Firefox, with Fish and the terminal tools inside WSL. The first WSL installation requires administrator approval, a restart if requested, and one interactive Ubuntu first launch to create the Linux user. Once Ubuntu is initialized, rerunning `setup-windows.ps1` installs packages without prompts.
 
 ## What the setup does
 
@@ -21,14 +24,28 @@ Running `personal.sh`:
 3. Installs Homebrew when necessary.
 4. Adds Homebrew to the Zsh login environment.
 5. Installs Rosetta 2 when necessary.
-6. Installs applications and command-line tools from `Brewfile`.
-7. Backs up existing Fish, Neovim, and WezTerm configurations.
-8. Links the repository-managed dotfiles with GNU Stow.
-9. Checks the iCloud wallpaper directory.
-10. Applies my macOS preferences.
-11. Replaces the Dock with my standard layout.
+6. Installs Homebrew applications and command-line tools from `Brewfile`.
+7. Installs OpenCode and ani-cli.
+8. Backs up existing Fish, Neovim, and WezTerm configurations.
+9. Links the repository-managed dotfiles with GNU Stow.
+10. Checks the iCloud wallpaper directory.
+11. Applies my macOS preferences and standard Dock layout.
 
 The script does not install macOS system updates or restart the Mac.
+
+## Windows and WSL setup
+
+Open PowerShell in the repository directory and run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\setup-windows.ps1
+```
+
+The script silently installs WezTerm, Firefox, and mpv through WinGet. If Ubuntu is not installed, it requests the WSL installation and exits. Complete Ubuntu's one-time first launch and create a Linux user, then rerun the command. The rerun installs WSL dependencies, OpenCode, ani-cli, and links the shared Fish, Neovim, and WezTerm config. Run it again later to refresh the setup.
+
+The repository must be available on a local Windows drive. WezTerm's Windows config directory is linked to the repository; in WSL, GNU Stow links the dotfiles into the Linux home directory. WSL's Windows PATH integration is used to call the Windows `mpv.exe` player from ani-cli.
+
+The first Neovim launch installs its plugins through lazy.nvim. No plugin update or lockfile sync is run during setup.
 
 ## New Mac setup
 
@@ -86,11 +103,13 @@ WezTerm launches Fish from:
 /opt/homebrew/bin/fish
 ```
 
-The Fish configuration places `/opt/homebrew/bin` before macOS system binaries. This ensures commands such as `python3` use the Homebrew installation.
+On Windows, WezTerm's default domain launches Fish in the Ubuntu WSL distribution.
+
+On Apple Silicon, the Fish configuration places `/opt/homebrew/bin` before macOS system binaries. It also adds `~/.local/bin` for tools such as OpenCode and ani-cli. The Homebrew path is only added when present, so the same Fish config works in WSL.
 
 ## Applications and tools
 
-The `Brewfile` is the source of truth for installed software.
+The `Brewfile` is the macOS application and tool manifest. `personal.sh` installs OpenCode and ani-cli with their upstream installers. `setup-windows.ps1` is the Windows/WSL install manifest; the platform package IDs differ, while the target apps are documented here.
 
 It currently manages:
 
@@ -104,8 +123,11 @@ It currently manages:
 - Coreutils
 - htop
 - sshpass
+- OpenCode
+- ani-cli, mpv, ffmpeg, fzf, and yt-dlp
 - WezTerm
-- Codex
+- Firefox
+- OpenAI Codex
 - VSCodium
 - Sublime Text
 - Brave Browser
@@ -180,6 +202,8 @@ WezTerm reads them directly from iCloud Drive:
 ~/Library/Mobile Documents/com~apple~CloudDocs/WezTerm/backdrops
 ```
 
+On Windows, put optional wallpapers in `dotfiles/wezterm/.config/wezterm/backdrops`. The directory is ignored by Git. WezTerm works without wallpapers on either platform.
+
 The wallpaper rotation interval is configured in:
 
 ```text
@@ -240,9 +264,11 @@ Re-running it:
 | --- | --- |
 | `personal.sh` | Main personal Mac bootstrap |
 | `Brewfile` | Homebrew applications and command-line tools |
-| `dotfiles/` | Fish, Neovim, and WezTerm configuration |
+| `setup-windows.ps1` | Unattended WinGet and WSL bootstrap (after first WSL user setup) |
+| `scripts/setup-wsl.sh` | WSL OpenCode, ani-cli, and dotfile setup |
 | `scripts/macos-defaults.sh` | macOS preferences |
-| `scripts/configure-dock.sh` | Standard Dock layout |
+| `scripts/configure-dock.sh` | Standard macOS Dock layout |
+| `dotfiles/` | Fish, Neovim, and WezTerm configuration |
 
 ## Legacy scripts
 

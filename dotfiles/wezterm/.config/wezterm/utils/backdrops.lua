@@ -10,6 +10,12 @@ math.random()
 math.random()
 
 local GLOB_PATTERN = '*.{jpg,jpeg,png,gif,bmp,ico,tiff,pnm,dds,tga}'
+local default_images_dir = wezterm.config_dir .. '/backdrops/'
+
+if wezterm.target_triple:find('apple') then
+   default_images_dir = wezterm.home_dir
+      .. '/Library/Mobile Documents/com~apple~CloudDocs/WezTerm/backdrops/'
+end
 
 ---@class BackDrops
 ---@field current_idx number index of current image
@@ -25,7 +31,7 @@ function BackDrops:init()
    local backdrops = {
       current_idx = 1,
       images = {},
-      images_dir = wezterm.home_dir..'/Library/Mobile Documents/com~apple~CloudDocs/WezTerm/backdrops/',
+      images_dir = default_images_dir,
       no_bg = false,
    }
    return setmetatable(backdrops, self)
@@ -40,7 +46,7 @@ end
 ---@param path string directory of background images
 function BackDrops:set_images_dir(path)
    self.images_dir = path
-   if not path:match('/$') then
+   if not path:match('[/\\]$') then
       self.images_dir = path .. '/'
    end
    return self
@@ -142,6 +148,10 @@ end
 ---Pass in `Window` object to override the current window options
 ---@param window Window? WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 function BackDrops:random(window)
+   if #self.images == 0 then
+      return
+   end
+
    self.current_idx = math.random(#self.images)
 
    if window ~= nil then
@@ -152,6 +162,10 @@ end
 ---Cycle the loaded `files` and select the next background
 ---@param window Window WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 function BackDrops:cycle_forward(window)
+   if #self.images == 0 then
+      return
+   end
+
    if self.current_idx == #self.images then
       self.current_idx = 1
    else
@@ -163,6 +177,10 @@ end
 ---Cycle the loaded `files` and select the previous background
 ---@param window Window WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 function BackDrops:cycle_back(window)
+   if #self.images == 0 then
+      return
+   end
+
    if self.current_idx == 1 then
       self.current_idx = #self.images
    else
@@ -175,7 +193,7 @@ end
 ---@param window Window WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 ---@param idx number index of the `files` array
 function BackDrops:set_img(window, idx)
-   if idx > #self.images or idx < 0 then
+   if idx > #self.images or idx < 1 then
       wezterm.log_error('Index out of range')
       return
    end

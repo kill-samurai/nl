@@ -1,4 +1,8 @@
-fish_add_path --move /opt/homebrew/bin /opt/homebrew/sbin
+if test -d /opt/homebrew/bin
+    fish_add_path --move /opt/homebrew/bin /opt/homebrew/sbin
+end
+fish_add_path --move $HOME/.local/bin
+fish_add_path --move $HOME/.opencode/bin
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end

@@ -5,12 +5,16 @@ brew "dockutil"
 brew "fish"
 brew "gh"
 brew "htop"
+brew "ffmpeg"
+brew "fzf"
+brew "mpv"
 brew "neovim"
 brew "node"
 brew "python"
 brew "ripgrep"
 brew "sshpass"
 brew "stow"
+brew "yt-dlp"
 
 # Terminal and fonts
 cask "wezterm"
@@ -22,6 +26,7 @@ cask "codex"
 cask "sublime-text"
 
 # Browsers
+cask "firefox"
 cask "brave-browser"
 cask "google-chrome"
 

@@ -1,9 +1,7 @@
 local Config = require('config')
 
-require('utils.backdrops')
-   -- :set_images_dir(require('wezterm').home_dir .. '/Pictures/Wallpapers/')
-   :scan_images_dir()
-   :random()
+local backdrops = require('utils.backdrops'):scan_images_dir()
+backdrops:random()
 
 require('events.wallpaper-rotation').setup(backdrops)
 require('events.left-status').setup()
