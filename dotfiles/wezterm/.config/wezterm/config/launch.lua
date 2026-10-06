@@ -10,8 +10,8 @@ local options = {
 if platform.is_win then
    options.default_domain = 'wsl:ubuntu-fish'
    options.launch_menu = {
-      { label = 'Ubuntu (Fish)', domain = 'wsl:ubuntu-fish' },
-      { label = 'Ubuntu (Bash)', domain = 'wsl:ubuntu-bash' },
+      { label = 'Ubuntu (Fish)', domain = { DomainName = 'wsl:ubuntu-fish' } },
+      { label = 'Ubuntu (Bash)', domain = { DomainName = 'wsl:ubuntu-bash' } },
       { label = 'PowerShell Core', args = { 'pwsh', '-NoLogo' } },
       { label = 'PowerShell Desktop', args = { 'powershell' } },
       { label = 'Command Prompt', args = { 'cmd' } },
