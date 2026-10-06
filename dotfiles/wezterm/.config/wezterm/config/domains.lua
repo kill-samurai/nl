@@ -17,7 +17,11 @@ if platform.is_win then
       {
          name = 'wsl:ubuntu-fish',
          distribution = 'Ubuntu',
-         default_prog = { 'fish', '-l' },
+         default_prog = {
+            'bash',
+            '-lc',
+            'if command -v fish >/dev/null 2>&1; then exec fish -l; else exec bash -l; fi',
+         },
       },
       {
          name = 'wsl:ubuntu-bash',

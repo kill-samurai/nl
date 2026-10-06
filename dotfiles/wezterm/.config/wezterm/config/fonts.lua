@@ -1,8 +1,9 @@
 local wezterm = require('wezterm')
 local platform = require('utils.platform')
 
--- local font_family = 'Maple Mono NF'
-local font_family = 'DepartureMono Nerd Font Mono'
+-- Use a font included with Windows so a fresh setup does not require manual
+-- font installation. Other platforms use the Nerd Font installed by Brewfile.
+local font_family = platform.is_win and 'Consolas' or 'DepartureMono Nerd Font Mono'
 -- local font_family = 'CartographCF Nerd Font'
 
 local font_size = platform.is_mac and 18 or 9.75
