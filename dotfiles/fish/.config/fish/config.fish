@@ -62,3 +62,5 @@ function show_command_duration --on-event fish_postexec
 end
 
 set -gx OPENCODE_EXPERIMENTAL_LSP_TOOL true
+
+
